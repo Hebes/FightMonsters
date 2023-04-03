@@ -1,0 +1,11 @@
+#git 文件夹
+Library/
+Logs/
+Temp/
+obj/
+.vs
+
+# 忽略文件
+.vsconfig
+*.csproj
+*.sln
