@@ -22,7 +22,7 @@ public class PassiveLog : SingletonAutoMono<PassiveLog>,IModule
         }
 
         // 被动日志模块
-        PassiveLog passiveLog = I; 
+        PassiveLog passiveLog = Instance; 
         passiveLog.name = "被动日志模块";
     }
     private void OnDestroy()

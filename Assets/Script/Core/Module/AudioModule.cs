@@ -33,8 +33,8 @@ public class AudioModule : SingletonAutoMono<AudioModule>,IModule
 
     public void InitModule()
     {
-        Module.I.audioModule = I; 
-        Module.I.audioModule.name = "音频模块";
+        ModuleManager.Instance.audioModule = Instance; 
+        ModuleManager.Instance.audioModule.name = "音频模块";
     }
 
     protected override void Awake()

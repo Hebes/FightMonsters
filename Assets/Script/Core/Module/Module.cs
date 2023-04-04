@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace Core
 {
-    public class Module : BaseManager<Module>
+    /// <summary>
+    /// Moduleπ‹¿Ì¿‡
+    /// </summary>
+    public class ModuleManager : BaseManager<ModuleManager>
     {
         public EventModule eventModule { get; set; }
         public MonoModule monoModule { get; set; }

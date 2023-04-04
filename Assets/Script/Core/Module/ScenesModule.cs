@@ -16,8 +16,8 @@ public class ScenesModule : SingletonAutoMono<ScenesModule>,IModule
 {
     public void InitModule()
     {
-        Module.I.scenesModule = I; 
-        Module.I.scenesModule.name = "场景加载模块";
+        ModuleManager.Instance.scenesModule = Instance; 
+        ModuleManager.Instance.scenesModule.name = "场景加载模块";
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class ScenesModule : SingletonAutoMono<ScenesModule>,IModule
     {
         //场景同步加载
         SceneManager.LoadScene(name);
-        PoolModule.I.Clear();
+        PoolModule.Instance.Clear();
         //加载完成过后 才会去执行fun
         callback?.Invoke();
     }
@@ -58,11 +58,11 @@ public class ScenesModule : SingletonAutoMono<ScenesModule>,IModule
         while (!ao.isDone)
         {
             //事件中心 向外分发 进度情况  外面想用就用
-            EventModule.I.EventTrigger("进度条更新", ao.progress);
+            EventModule.Instance.EventTrigger("进度条更新", ao.progress);
             //这里面去更新进度条
             yield return ao;
         }
-        PoolModule.I.Clear();
+        PoolModule.Instance.Clear();
         //加载完成过后 才会去执行fun
         callback?.Invoke();
     }

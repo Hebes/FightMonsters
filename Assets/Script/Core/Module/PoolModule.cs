@@ -74,8 +74,8 @@ public class PoolModule : SingletonAutoMono<PoolModule>,IModule
     public void InitModule()
     {
         poolDic = new Dictionary<string, PoolData>();
-        Module.I.poolModule = I;
-        Module.I.poolModule.name = "PoolMgr模块";
+        ModuleManager.Instance.poolModule = Instance;
+        ModuleManager.Instance.poolModule.name = "PoolMgr模块";
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public class PoolModule : SingletonAutoMono<PoolModule>,IModule
         {
             Debug.Log("Instance To Pool ");
             //通过异步加载资源 创建对象给外部用
-            ResModule.I.LoadAsync<GameObject>(name, (o) =>
+            ResModule.Instance.LoadAsync<GameObject>(name, (o) =>
             {
                 o.name = name;
                 callBack(o);

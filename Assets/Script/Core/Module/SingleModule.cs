@@ -13,7 +13,7 @@ public class SingleModule { }
 public class SingletonAutoMono<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
-    public static T I
+    public static T Instance
     {
         get
         {
@@ -40,7 +40,7 @@ public class SingletonAutoMono<T> : MonoBehaviour where T : MonoBehaviour
 public class BaseManager<T> where T : new()
 {
     private static T instance;
-    public static T I
+    public static T Instance
     {
         get
         {

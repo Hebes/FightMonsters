@@ -19,8 +19,8 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
 
     public void InitModule()
     {
-        Module.I.monoModule = I; 
-        Module.I.monoModule.name = "MonoMgr模块";
+        ModuleManager.Instance.monoModule = Instance; 
+        ModuleManager.Instance.monoModule.name = "MonoMgr模块";
     }
 
     protected override void Awake()

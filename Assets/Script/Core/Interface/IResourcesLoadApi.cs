@@ -18,18 +18,18 @@ public interface IResourcesLoadApi
     public T Load<T>(string name, UnityAction<T> callback = null) where T : Object;
 
     /// <summary>
-    /// 异步加载单个资源
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="name"></param>
-    /// <param name="callback"></param>
-    public void LoadAsync<T>(string name, UnityAction<T> callback = null) where T : Object;
-
-    /// <summary>
     /// 加载同步所有资源
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="path"></param>
     /// <returns></returns>
     public T[] LoadAll<T>(string path) where T : Object;
+
+    /// <summary>
+    /// 异步加载单个资源
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <param name="callback"></param>
+    public void LoadAsync<T>(string name, UnityAction<T> callback = null) where T : Object;
 }

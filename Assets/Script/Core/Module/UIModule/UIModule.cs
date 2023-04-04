@@ -71,16 +71,16 @@ public class UIModule : BaseManager<UIModule>,IModule
         panelDic = new Dictionary<string, BasePanel>();
 
         //创建Canvas
-        GameObject obj = GameObject.Find("Canvas");
+        GameObject obj = GameObject.Find(Config.Canvas);
         canvas = obj.transform as RectTransform;
 
         //找到各层
-        bottom = canvas.Find("Bottom");
-        mid = canvas.Find("Mid");
-        top = canvas.Find("Top");
-        system = canvas.Find("System");
+        bottom = canvas.Find(Config.Bottom);
+        mid = canvas.Find(Config.Mid);
+        top = canvas.Find(Config.Top);
+        system = canvas.Find(Config.System);
 
-        Module.I.uiModule = this;
+        ModuleManager.Instance.uiModule = this;
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ public class UIModule : BaseManager<UIModule>,IModule
             return;
         }
 
-        ResModule.I.LoadAsync<GameObject>("Prefabs/UI/" + uIInfo.panelName, (obj) =>
+        ResModule.Instance.LoadAsync<GameObject>("Prefabs/UI/" + uIInfo.panelName, (obj) =>
         {
 
             //把他作为 Canvas的子对象
@@ -184,9 +184,7 @@ public class UIModule : BaseManager<UIModule>,IModule
     public void HideAllPanel(object obj = null)
     {
         foreach (KeyValuePair<string, BasePanel> panel in panelDic)
-        {
             HidePanel(panel.Key, obj);
-        }
     }
 
     /// <summary>
@@ -194,9 +192,7 @@ public class UIModule : BaseManager<UIModule>,IModule
     /// </summary>
     public T GetPanel<T>(string name) where T : BasePanel
     {
-        if (panelDic.ContainsKey(name))
-            return panelDic[name] as T;
-        return null;
+        return panelDic.ContainsKey(name) ? panelDic[name] as T : null;
     }
 
     /// <summary>

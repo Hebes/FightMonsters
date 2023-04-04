@@ -13,7 +13,7 @@ public class PrefabModule : BaseManager<PrefabModule>,IModule
     public void InitModule()
     {
         prefabs = new List<Transform>();
-        LoadPrefab("Prefabs");
+        //LoadPrefab("Prefabs");
     }
 
     private List<Transform> prefabs { get; set; }
@@ -34,7 +34,7 @@ public class PrefabModule : BaseManager<PrefabModule>,IModule
     /// </summary>
     private void LoadPrefab(string path)
     {
-        Transform[] transforms = ResModule.I.LoadAll<Transform>(path);
+        Transform[] transforms = ResModule.Instance.LoadAll<Transform>(path);
         prefabs.AddRange(transforms);
     }
 

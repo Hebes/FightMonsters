@@ -21,7 +21,7 @@ public class EventModule : BaseManager<EventModule>,IModule
     {
         eventDic = new Dictionary<string, IEventInfo>();
 
-        Module.I.eventModule = I;
+        ModuleManager.Instance.eventModule = Instance;
     }
 
 
