@@ -60,9 +60,9 @@ public class ResLoader : IResourcesLoadApi
     {
         ResourceRequest r = Resources.LoadAsync<T>(name);
         yield return r;
-        //if (r.asset is GameObject)
-        //    callback?.Invoke(GameObject.Instantiate(r.asset) as T);
-        //else
-        callback?.Invoke(r.asset as T);
+        if (r.asset is GameObject)
+            callback?.Invoke(GameObject.Instantiate(r.asset) as T);
+        else
+            callback?.Invoke(r.asset as T);
     }
 }

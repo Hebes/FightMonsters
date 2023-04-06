@@ -46,7 +46,7 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     /// 给外部提供的 添加Awake事件的函数
     /// </summary>
     /// <param name="unityAction"></param>
-    public void AddAwakeListener(UnityAction unityAction)
+    public void AddAwake(UnityAction unityAction)
     {
         awakeEvent += unityAction;
     }
@@ -55,7 +55,7 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     /// 给外部提供的 添加Start事件的函数
     /// </summary>
     /// <param name="unityAction"></param>
-    public void AddStartListener(UnityAction unityAction)
+    public void AddStart(UnityAction unityAction)
     {
         startEvent += unityAction;
     }
@@ -64,9 +64,14 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     /// 给外部提供的 添加帧更新事件的函数
     /// </summary>
     /// <param name="fun"></param>
-    public void AddUpdateListener(UnityAction fun)
+    public void AddUpdate(UnityAction fun)
     {
         updateEvent += fun;
+    }
+
+    public void AddFixedUpdate(UnityAction fun)
+    {
+        fixUpdateEvent += fun;
     }
 
     //*********************************移除事件监听*********************************
@@ -74,7 +79,7 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     /// 提供给外部 用于移除帧更新事件函数
     /// </summary>
     /// <param name="fun"></param>
-    public void RemoveUpdateListener(UnityAction fun)
+    public void RemoveUpdate(UnityAction fun)
     {
         updateEvent -= fun;
     }
@@ -82,7 +87,7 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     /// 提供给外部 用于移除Awake事件函数
     /// </summary>
     /// <param name="unityAction"></param>
-    public void RemoveAwakeListener(UnityAction unityAction)
+    public void RemoveAwake(UnityAction unityAction)
     {
         awakeEvent -= unityAction;
     }
@@ -91,9 +96,13 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     /// 给外部提供的 添加Start事件的函数
     /// </summary>
     /// <param name="unityAction"></param>
-    public void RemoveStartListener(UnityAction unityAction)
+    public void RemoveStart(UnityAction unityAction)
     {
         startEvent -= unityAction;
+    }
+    public void RemoveFixedUpdate(UnityAction unityAction)
+    {
+        fixUpdateEvent -= unityAction;
     }
 
     //*********************************携程方法的使用*********************************
@@ -121,6 +130,4 @@ public class MonoModule : SingletonAutoMono<MonoModule>,IModule
     {
         StopCoroutine(methodName);
     }
-
-    
 }

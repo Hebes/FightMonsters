@@ -41,9 +41,14 @@ public class FSMSystem
     /// <summary>
     /// 更新npc的动作
     /// </summary>
-    public void Update()
+    public void DOUpdata()
     {
         currentState?.DOUpdata();
+    }
+
+    public void DOFixedUpdate()
+    {
+        currentState?.DOFixedUpdate();
     }
 
     /// <summary>

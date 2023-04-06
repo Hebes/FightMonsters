@@ -23,5 +23,7 @@ public abstract class FSMState
     /// </summary>
     public virtual void DOUpdata() { }
 
+    public virtual void DOFixedUpdate() { }
+
 }
 
