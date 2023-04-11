@@ -13,8 +13,7 @@ public class PlayerComponent : PlayeBase
     public Transform T_GunTransform { get; set; }
     public Transform T_Gun_ShootPointTransform { get; set; }
     public Transform T_GunSpriteTransform { get; set; }
-
-
+    public IDamage idamage { get; set; }
 
     public void Awake()
     {
@@ -29,5 +28,17 @@ public class PlayerComponent : PlayeBase
         T_GunTransform = transform.Find("T_Gun").GetComponent<Transform>();
         T_Gun_ShootPointTransform = transform.Find("T_Gun/T_Gun_ShootPoint").GetComponent<Transform>();
         T_GunSpriteTransform = transform.Find("T_Gun/T_GunSprite").GetComponent<Transform>();
+    }
+
+    private void OnEnable()
+    {
+        //ÕÊº“ ‹µΩ…À∫¶
+        idamage = new PlayerDamage();
+        //moduleManager.eventModule.AddEventListener<GameObject>(EventType.playerTakeDamage, idamage.TakeDamage);
+    }
+
+    private void OnDisable()
+    {
+        //moduleManager.eventModule.RemoveEventListener<GameObject>(EventType.playerTakeDamage, idamage.TakeDamage);
     }
 }

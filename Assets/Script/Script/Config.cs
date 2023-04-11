@@ -5,6 +5,8 @@ using UnityEngine;
 public class EventType
 {
     public const string playerShoot = "playerShoot";
+    public const string playerTakeDamage = "playerTakeDamage";
+    public const string bulletToEnemy = "bulletToEnemy";
 }
 
 public class Config
@@ -37,6 +39,7 @@ public class Config
 
     //Tag
     public const string playerTag = "Player";
+    public const string enemyTag = "Enemy";
 
     //π÷ŒÔ
     public const string EnemyFlight = "Enemy/EnemyFlight";//–∞—€

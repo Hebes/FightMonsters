@@ -8,5 +8,7 @@ public interface IMove
     /// ÒÆ¶¯½Ó¿Ú
     /// </summary>
     /// <param name="velocityVector"></param>
-    public abstract void SetMove(Vector3 velocityVector);
+    public virtual void SetMove(Vector3 vector3) { }
+
+    public virtual void SetMove(Vector2 vector2) { }
 }

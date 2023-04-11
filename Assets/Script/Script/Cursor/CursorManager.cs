@@ -41,7 +41,7 @@ public class CursorAnimation
 /// <summary>
 /// 光标管理
 /// </summary>
-public class CursorManager : MonoBehaviour
+public class CursorManager : SingletonAutoMono<CursorManager>
 {
     private List<CursorAnimation> cursorList { get; set; }
     private CursorAnimation cursorAnimation { get; set; }
@@ -50,7 +50,7 @@ public class CursorManager : MonoBehaviour
     private float frameTimer { get; set; }
     private int frameCount { get; set; }
 
-    private void Awake()
+    protected override void Awake()
     {
         cursorList = new List<CursorAnimation>() {
         new CursorAnimation{
@@ -82,8 +82,16 @@ public class CursorManager : MonoBehaviour
 
         SetActiveCursorType(ECursorType.Arrow);//初始默认设置箭头图标
     }
+    private void OnEnable()
+    {
+        ModuleManager.Instance.monoModule.AddUpdate(OnUpdate);
+    }
+    private void OnDisable()
+    {
+        ModuleManager.Instance.monoModule.RemoveUpdate(OnUpdate);
+    }
 
-    private void Update()
+    private void OnUpdate()
     {
         frameTimer -= Time.deltaTime;
         if (frameTimer <= 0f)

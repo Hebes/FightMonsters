@@ -1,4 +1,5 @@
 using Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -112,8 +113,6 @@ public class EventModule : BaseManager<EventModule>,IModule
     {
         eventDic.Clear();
     }
-
-    
 }
 
 public interface IEventInfo { }

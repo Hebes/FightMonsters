@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : PlayeBase, IMove
 {
     public float playerMoveSpeed = 5f;
-    public Vector3 velocityVector;
+    public Vector2 velocityVector;
 
     public override void OnUpdate()
     {
@@ -20,7 +20,7 @@ public class PlayerMove : PlayeBase, IMove
         if (Input.GetKey(Config.Key_Right)) moveX = +1f;
         //float moveX = Input.GetAxis("Horizontal");
         //float moveY = Input.GetAxis("Vertical");
-        Vector3 moveVector = new Vector3(moveX, moveY).normalized;
+        Vector2 moveVector = new Vector2(moveX, moveY).normalized;
         bool isIdle = moveX == 0 && moveY == 0;
         playerComponent.T_Playr_BodyAnimator.Play(isIdle ? "knightIdle" : "knightRun");
         GetComponent<IMove>().SetMove(moveVector);
@@ -32,7 +32,7 @@ public class PlayerMove : PlayeBase, IMove
         playerComponent.player_Rigidbody2D.velocity = velocityVector * playerMoveSpeed;//∏’ÃÂ‘À∂Ø
     }
 
-    public void SetMove(Vector3 velocityVector)
+    public void SetMove(Vector2 velocityVector)
     {
         this.velocityVector = velocityVector;
     }

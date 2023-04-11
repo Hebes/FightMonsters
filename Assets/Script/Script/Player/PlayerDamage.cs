@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
-public class MapController : MonoBehaviour
+public class PlayerDamage : IDamage
 {
+    public void Kill()
+    {
+    }
 
+    public void TakeDamage()
+    {
+    }
 }

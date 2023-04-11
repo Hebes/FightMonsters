@@ -5,20 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletCommon : MonoBehaviour, IBulletSetup
+public class BulletCommon : BaseMonoBehaviour, IBulletSetup
 {
     private Vector3 shootDir;
     private float moveSpeed = 100f;
-
-    private void OnEnable()
-    {
-        ModuleManager.Instance.monoModule.AddUpdate(OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        ModuleManager.Instance.monoModule.RemoveUpdate(OnUpdate);
-    }
+    public float bulletDamage = 2;//子弹伤害
 
     /// <summary>
     /// 设置
@@ -33,7 +24,7 @@ public class BulletCommon : MonoBehaviour, IBulletSetup
         StartCoroutine(Push(() => { Push(); }, 2));
     }
 
-    private void OnUpdate()
+    public override void OnUpdate()
     {
         //子弹移动
         transform.position += shootDir * Time.deltaTime * moveSpeed;
@@ -42,22 +33,12 @@ public class BulletCommon : MonoBehaviour, IBulletSetup
     private void OnTriggerEnter2D(Collider2D collision)
     {
         this.Log("进入了碰撞");
-        //ICommonCollide target = collision.GetComponent<ICommonCollide>();
-        //if (target != null)
-        //{
-        //    // Hit enemy 敌人伤害
-        //    int damageAmount = UnityEngine.Random.Range(100, 200);//随机伤害
-        //    bool isCritical = UnityEngine.Random.Range(0, 100) < 30;//是否重击
-        //    if (isCritical) damageAmount *= 2;//重击伤害*2
-
-        //    target.Damage(damageAmount);
-        //    StartCoroutine(Push(() => { Push(); }, 0));
-
-        //    //显示伤害文字效果
-        //    //Component_Helper.Show_pf_Damage(collision.transform.position, damageAmount, isCritical);
-        //    //加载特效
-        //    //Component_Helper.LoadEffect(Config_ResLoadPaths.Gun_pf_Effect, collision.transform.position);
-        //}
+        if (collision.tag.Equals(Config.enemyTag))//触发
+        {
+            eventModule.EventTrigger<float>(EventType.bulletToEnemy, bulletDamage);
+            Push();
+            //StartCoroutine(Push(() => { Push(); }, 0));
+        }
     }
 
     /// <summary>
@@ -71,6 +52,6 @@ public class BulletCommon : MonoBehaviour, IBulletSetup
 
     private void Push()
     {
-        ModuleManager.Instance.poolModule.PushObj(gameObject.name, gameObject);
+        poolModule.PushObj(gameObject.name, gameObject);
     }
 }

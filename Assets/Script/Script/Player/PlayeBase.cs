@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class PlayeBase : MonoBehaviour
 {
-   protected PlayerComponent playerComponent;
+    protected PlayerComponent playerComponent;
+    public ModuleManager moduleManager { get; private set; }
 
     private void Awake()
     {
         playerComponent = GetComponent<PlayerComponent>();
+        moduleManager = ModuleManager.Instance;
     }
 
     private void OnEnable()
@@ -27,13 +29,13 @@ public class PlayeBase : MonoBehaviour
         ModuleManager.Instance.monoModule.RemoveFixedUpdate(OnFixedUpdate);
     }
 
-   
+
     public virtual void OnStart()
     {
 
     }
 
-    public virtual void  OnUpdate()
+    public virtual void OnUpdate()
     {
 
     }
